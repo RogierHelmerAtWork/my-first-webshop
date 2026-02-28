@@ -1,0 +1,19 @@
+{
+  "name": "my-first-webshop",
+  "version": "1.0.0",
+  "description": "A simple webshop application",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 8080",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "webshop",
+    "ecommerce"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
