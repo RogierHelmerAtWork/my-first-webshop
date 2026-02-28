@@ -143,10 +143,10 @@ function updateCartDisplay() {
             </div>
             <div class="cart-item-actions">
                 <button class="btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                <span style="margin: 0 1rem;">${item.quantity}</span>
+                <span class="quantity-display">${item.quantity}</span>
                 <button class="btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                <span style="margin-left: 1rem;">$${itemTotal.toFixed(2)}</span>
-                <button class="btn btn-danger" onclick="removeFromCart(${item.id})" style="margin-left: 1rem;">Remove</button>
+                <span class="item-total">$${itemTotal.toFixed(2)}</span>
+                <button class="btn btn-danger" onclick="removeFromCart(${item.id})">Remove</button>
             </div>
         `;
         cartItems.appendChild(cartItem);

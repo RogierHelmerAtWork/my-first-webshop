@@ -181,6 +181,18 @@ main {
     align-items: center;
 }
 
+.quantity-display {
+    margin: 0 1rem;
+}
+
+.item-total {
+    margin-left: 1rem;
+}
+
+.cart-item-actions .btn-danger {
+    margin-left: 1rem;
+}
+
 #cart-total {
     margin-top: 2rem;
     padding-top: 1rem;
