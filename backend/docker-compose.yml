@@ -1,0 +1,60 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    container_name: medusa_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: medusa-store
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - medusa_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: medusa_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - medusa_network
+
+  medusa:
+    build: .
+    container_name: medusa_backend
+    restart: "no"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    ports:
+      - "9000:9000"     # API
+      - "7001:7001"     # Admin dashboard (Vite)
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/medusa-store
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=supersecret   # change in production!
+      - COOKIE_SECRET=supersecret
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - medusa_network
+
+volumes:
+  postgres_data:
+
+networks:
+  medusa_network:
+
