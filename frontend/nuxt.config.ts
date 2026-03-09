@@ -50,14 +50,15 @@ export default defineNuxtConfig({
   },
 
   vite: {
-    resolve: {
-      alias: {
-        vue: 'vue/dist/vue.esm-bundler.js',  // has default export
-      },
+    build: {
+      minify: false,
+      terserOptions: { compress: false },
     },
   },
 
   nitro: {
+    minify: false,
+    compressPublicAssets: false,
     esbuild: {
       target: 'es2020',
     },
