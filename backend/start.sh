@@ -42,6 +42,7 @@ pnpm medusa db:setup --db medusa-store --no-interactive
 
 echo "Starting Medusa..."
 cd .medusa/server
+cp ../../.env .env.production
 
-exec cp ../../.env .env.production && pnpm start
+exec pnpm start
 #exec pnpm medusa develop   # or pnpm medusa develop if you prefer dev mode
