@@ -15,10 +15,21 @@ until nc -z -v -w1 postgres 5432 2>/dev/null; do
 done
 echo "PostgreSQL is ready!"
 
-echo "Setting up database..."
-# Force Medusa CLI to use process.env instead of .env file
-pnpm medusa db:setup --no-dotenv
+# Create .env file from Railway injected env vars
+echo "Creating .env from environment variables..."
+cat > .env << EOF
+DATABASE_URL=$DATABASE_URL
+REDIS_URL=$REDIS_URL
+JWT_SECRET=$JWT_SECRET
+COOKIE_SECRET=$COOKIE_SECRET
+NODE_ENV=production
+EOF
 
-echo "Starting Medusa in dev mode..."
-# Same for develop/start
-exec pnpm medusa develop --no-dotenv
+echo ".env created with DATABASE_URL and other vars."
+
+# Now run Medusa CLI — it will load the .env we just made
+echo "Setting up database..."
+pnpm medusa db:setup
+
+echo "Starting Medusa..."
+exec pnpm start   # or pnpm medusa develop if you prefer dev mode
