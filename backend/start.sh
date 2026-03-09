@@ -40,9 +40,14 @@ pnpm medusa db:setup --db medusa-store --no-interactive
 # echo "Building admin dashboard..."
 # pnpm medusa build
 
-echo "Starting Medusa..."
-cd .medusa/server
+echo "Changing to compiled server directory..."
+cd .medusa/server || { echo "Error: .medusa/server not found - build missing"; exit 1; }
+
 cp ../../.env .env.production
 
-exec pnpm start
+echo "Starting Medusa in production mode from .medusa/server..."
+
+# Use npx to find medusa in root node_modules
+exec npx medusa start
+
 #exec pnpm medusa develop   # or pnpm medusa develop if you prefer dev mode
