@@ -28,9 +28,9 @@ EOF
 
 echo ".env created with DATABASE_URL and other vars."
 
-# Now run Medusa CLI — it will load the .env we just made
-echo "Setting up database..."
-pnpm medusa db:setup
+# Run setup non-interactively
+echo "Setting up database (non-interactive)..."
+pnpm medusa db:setup --db medusa-store --no-interactive
 
 echo "Starting Medusa..."
 exec pnpm start   # or pnpm medusa develop if you prefer dev mode
