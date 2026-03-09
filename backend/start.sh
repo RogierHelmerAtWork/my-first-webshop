@@ -32,5 +32,9 @@ echo ".env created with DATABASE_URL and other vars."
 echo "Setting up database (non-interactive)..."
 pnpm medusa db:setup --db medusa-store --no-interactive
 
+# Build the admin dashboard (required for production start)
+echo "Building admin dashboard..."
+pnpm medusa build
+
 echo "Starting Medusa..."
 exec pnpm start   # or pnpm medusa develop if you prefer dev mode
