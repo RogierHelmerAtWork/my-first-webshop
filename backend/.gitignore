@@ -26,3 +26,5 @@ build
 .pnpm-store
 
 # .medusa
+.medusa/server/node_modules
+.medusa/server/.env.production
