@@ -42,4 +42,24 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  vite: {
+    resolve: {
+      alias: {
+        vue: 'vue/dist/vue.esm-bundler.js', // ← forces bundler-compatible build
+      },
+    },
+  },
+
+  nitro: {
+    esbuild: {
+      target: 'es2020',          // ← correct location
+    },
+  },
+
+  // Optional: more Vercel-friendly settings
+  ssr: true,
+  experimental: {
+    payloadExtraction: true,
+  },
 })
