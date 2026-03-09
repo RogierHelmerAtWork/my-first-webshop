@@ -40,5 +40,6 @@ pnpm medusa db:setup --db medusa-store --no-interactive
 # pnpm medusa build
 
 echo "Starting Medusa..."
-exec pnpm medusa build && cd .medusa/server && pnpm install --lockfile-only && cp ../../.env .env.production && export NODE_ENV=production && pnpm medusa start
+cd cd .medusa/server
+exec NODE_ENV=production pnpm install --lockfile-only && cp ../../.env .env.production && pnpm medusa start
 #exec pnpm medusa develop   # or pnpm medusa develop if you prefer dev mode
