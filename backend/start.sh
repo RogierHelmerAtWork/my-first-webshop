@@ -26,10 +26,10 @@ DB_NAME=$DB_NAME
 NODE_ENV=production
 EOF
 
-echo "Display REDIS_URL for debugging:"
-echo $REDIS_URL
-
 echo ".env created with DATABASE_URL and other vars."
+
+export REDIS_URL="$REDIS_URL"
+export DATABASE_URL="$DATABASE_URL"
 
 # Run setup non-interactively
 echo "Setting up database (non-interactive)..."
