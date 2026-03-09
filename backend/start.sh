@@ -40,4 +40,4 @@ pnpm medusa db:setup --db medusa-store --no-interactive
 # pnpm medusa build
 
 echo "Starting Medusa..."
-exec pnpm start   # or pnpm medusa develop if you prefer dev mode
+exec pnpm medusa develop   # or pnpm medusa develop if you prefer dev mode
