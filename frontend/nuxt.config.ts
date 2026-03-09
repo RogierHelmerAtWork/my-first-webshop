@@ -54,13 +54,16 @@ export default defineNuxtConfig({
       minify: false,
       terserOptions: { compress: false },
     },
+    ssr: {
+      noExternal: ['gsap', '@vueuse/core', 'vue', 'vue-router'],
+    }
   },
 
-  nitro: {
-    minify: false,
-    compressPublicAssets: false,
-    esbuild: {
-      target: 'es2020',
-    },
-  },
+  // nitro: {
+  //   minify: false,
+  //   compressPublicAssets: false,
+  //   esbuild: {
+  //     target: 'es2020',
+  //   },
+  // },
 })
