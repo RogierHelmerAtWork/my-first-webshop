@@ -48,4 +48,18 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: true,
   },
+
+  vite: {
+    resolve: {
+      alias: {
+        vue: 'vue/dist/vue.esm-bundler.js',  // has default export
+      },
+    },
+  },
+
+  nitro: {
+    esbuild: {
+      target: 'es2020',
+    },
+  },
 })
