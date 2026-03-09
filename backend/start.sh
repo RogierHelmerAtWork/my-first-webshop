@@ -30,6 +30,7 @@ echo ".env created with DATABASE_URL and other vars."
 
 export REDIS_URL="$REDIS_URL"
 export DATABASE_URL="$DATABASE_URL"
+export NODE_ENV=production
 
 # Run setup non-interactively
 echo "Setting up database (non-interactive)..."
@@ -41,5 +42,6 @@ pnpm medusa db:setup --db medusa-store --no-interactive
 
 echo "Starting Medusa..."
 cd .medusa/server
-exec NODE_ENV=production pnpm install --lockfile-only && cp ../../.env .env.production && pnpm medusa start
+
+exec pnpm install --lockfile-only && cp ../../.env .env.production && pnpm medusa start
 #exec pnpm medusa develop   # or pnpm medusa develop if you prefer dev mode
