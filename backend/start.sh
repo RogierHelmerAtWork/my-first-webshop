@@ -26,6 +26,9 @@ DB_NAME=$DB_NAME
 NODE_ENV=production
 EOF
 
+echo "Display REDIS_URL for debugging:"
+echo $REDIS_URL
+
 echo ".env created with DATABASE_URL and other vars."
 
 # Run setup non-interactively
