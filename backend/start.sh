@@ -40,6 +40,10 @@ pnpm medusa db:setup --db medusa-store --no-interactive
 # echo "Building admin dashboard..."
 # pnpm medusa build
 
+# Create the admin user
+echo "Creating admin user..."
+pnpm medusa exec ./src/scripts/seed-admin.ts
+
 echo "Changing to compiled server directory..."
 cd .medusa/server || { echo "Error: .medusa/server not found - build missing"; exit 1; }
 

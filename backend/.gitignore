@@ -1,5 +1,5 @@
 /dist
-.env.local
+.env.development
 .DS_Store
 /uploads
 /node_modules
