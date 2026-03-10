@@ -10,7 +10,7 @@ export default async function seedAdmin({ container }: any) {
     headers: {},
     query: {},
     body: {
-      email: "admin@example.com",
+      email: "admin@parfumproberen.nl",
       password: "SuperSecret123!#$",
     },
     protocol: "https",
