@@ -5,6 +5,9 @@ loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 const domain = process.env.RAILWAY_PUBLIC_DOMAIN
 const backendUrl = domain ? `https://${domain}` : "http://localhost:9000"
 
+console.log("RAILWAY_PUBLIC_DOMAIN:", process.env.RAILWAY_PUBLIC_DOMAIN)
+console.log("backendUrl:", backendUrl)
+
 module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
@@ -13,7 +16,7 @@ module.exports = defineConfig({
       storeCors: process.env.STORE_CORS || backendUrl,
       adminCors: process.env.ADMIN_CORS || backendUrl,
       authCors: process.env.AUTH_CORS || backendUrl,
-      
+
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     },
@@ -25,7 +28,7 @@ module.exports = defineConfig({
 
   admin: {
     // optional but recommended when running in Docker / separate origin
-    backendUrl: backendUrl|| "http://localhost:9000",
+    backendUrl,
     vite: (config) => {
       return {
         ...config,
