@@ -5,6 +5,7 @@ loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 const domain = process.env.RAILWAY_PUBLIC_DOMAIN
 const backendUrl = domain ? `https://${domain}` : "http://localhost:9000"
 
+console.log("MEDUSA_ADMIN_BACKEND_URL:", process.env.MEDUSA_ADMIN_BACKEND_URL)
 console.log("RAILWAY_PUBLIC_DOMAIN:", process.env.RAILWAY_PUBLIC_DOMAIN)
 console.log("backendUrl:", backendUrl)
 

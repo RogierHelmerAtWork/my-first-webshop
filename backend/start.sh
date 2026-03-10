@@ -37,8 +37,8 @@ echo "Setting up database (non-interactive)..."
 pnpm medusa db:setup --db medusa-store --no-interactive
 
 # Build the admin dashboard (required for production start)
-# echo "Building admin dashboard..."
-# pnpm medusa build
+echo "Building admin dashboard..."
+pnpm medusa build
 
 # Create the admin user
 # echo "Creating admin user..."
