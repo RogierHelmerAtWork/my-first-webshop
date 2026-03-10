@@ -919,4 +919,36 @@ export default async function seedDemoData({ container }: ExecArgs) {
   });
 
   logger.info("Finished seeding inventory levels data.");
+
+
+  const authModuleService = container.resolve(Modules.AUTH)
+  const userModuleService = container.resolve(Modules.USER)
+
+  // 1. Register the auth identity (email + password)
+  const { success, authIdentity } = await authModuleService.register("emailpass", {
+    entity_id: "admin@parfumproberen.nl",
+    password: "Supersecret123!",
+  })
+
+  if (!success || !authIdentity) {
+    console.error("Failed to create auth identity")
+    return
+  }
+
+  // 2. Create the user
+  const user = await userModuleService.createUsers({
+    email: "admin@parfumproberen.nl",
+    first_name: "Admin",
+    last_name: "User",
+  })
+
+  // 3. Associate the user with the auth identity
+  await authModuleService.updateAuthIdentities({
+    id: authIdentity.id,
+    app_metadata: {
+      user_id: user.id,
+    },
+  })
+
+  console.log("Admin user created:", user);
 }
