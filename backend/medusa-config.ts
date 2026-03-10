@@ -2,6 +2,9 @@ import { loadEnv, defineConfig } from '@medusajs/framework/utils'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
+const domain = process.env.RAILWAY_PUBLIC_DOMAIN
+const backendUrl = domain ? `https://${domain}` : "http://localhost:9000"
+
 module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
@@ -21,7 +24,7 @@ module.exports = defineConfig({
 
   admin: {
     // optional but recommended when running in Docker / separate origin
-    backendUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9000",
+    backendUrl: backendUrl|| "http://localhost:9000",
     vite: (config) => {
       return {
         ...config,
